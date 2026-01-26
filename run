@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source=$1 # get source file
+
+filename="${source%.*}"   # get filename
+extension="${source##*.}" # get filetype(extension)
+
+#echo "$source"
+#echo "$filename"
+#echo "$extension"
+
+mkdir -p .output
+
+if [[ "$extension" == "c" ]]; then
+  gcc $source -o ".output/$filename"
+  chmod +x ".output/$filename"
+  ./.output/$filename
+
+elif [[ "$extension" == "cpp" ]]; then
+  g++ $source -o ".output/$filename"
+  chmod +x ".output/$filename"
+  ./.output/$filename
+
+fi
